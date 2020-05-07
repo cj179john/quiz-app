@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {Content} from './components/Content';
 import blue from '@material-ui/core/colors/blue';
