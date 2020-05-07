@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {Content} from './components/Content';
 import blue from '@material-ui/core/colors/blue';
@@ -15,11 +15,17 @@ const useStyles = makeStyles(theme =>
         display: 'flex',
       },
       content: {
-        backgroundColor: blue[200],
-        position: "sticky",
-        minHeight: 600,
-        minWidth: 400,
-        marginTop: theme.spacing(8)
+        userSelect: "none",
+        overflowX: "hidden",
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        width: "70%",
+        height: "75%"
       }
     })
 );
@@ -32,15 +38,12 @@ const App = () => {
     <Router basename="/">
       <div className={classes.root}>
         <div className={classes.contentGrid}>
-          <Grid
+          <Paper
             container={true}
             className={classes.content}
-            direction="column"
-            alignItems="center"
-            justify="center"
           >
             <Content/>
-          </Grid>
+          </Paper>
         </div>
       </div>
     </Router>

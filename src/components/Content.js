@@ -1,4 +1,4 @@
-import {Box, Grid} from '@material-ui/core';
+import {Box, Grid, Paper} from '@material-ui/core';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';

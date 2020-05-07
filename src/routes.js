@@ -1,4 +1,4 @@
-import Question from './components/Question';
+import Questions from './components/Questions';
 import Home from './components/Home';
 
 export const routes = [
@@ -7,7 +7,7 @@ export const routes = [
     path: '/'
   },
   {
-    component: Question,
+    component: Questions,
     path: '/questions'
   }
 ];
