@@ -20,12 +20,8 @@ const appRoutes = routes.map(
 
 export const Content = () => {
   return (
-    <>
-    <Grid item={true} xs={12}>
-      <Switch>
-        {appRoutes}
-      </Switch>
-    </Grid>
-    </>
+    <Switch>
+      {appRoutes}
+    </Switch>
   );
 };
