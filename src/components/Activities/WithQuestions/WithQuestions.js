@@ -7,12 +7,20 @@ import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
 import {getQuestions} from './actions';
 import {getActivities} from '../actions';
-import { Typography } from '@material-ui/core';
+import { Typography, makeStyles } from '@material-ui/core';
 import Result from '../../Result';
+
+const useStyles = makeStyles(theme => ({
+    homeIcon: {
+      marginLeft: '50%'
+    }
+  })
+);
 
 function WithQuestions(props) {
   const {match, questions, dispatch, questionIds, activities} = props;
 
+  const classes = useStyles();
   const id = match.params.id;
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentId, setCurrentId] = useState(1);
@@ -61,7 +69,7 @@ function WithQuestions(props) {
       <Grid item={true} xs={12}>
         <Question currentQuestion={currentQuestion} activity={activity} onAnswer={onAnswer} round={null}/>
       </Grid>
-      <Grid item={true} xs={12}>
+      <Grid item={true} xs={12} className={classes.homeIcon}>
         <Button component={Link} to="/"><HomeIcon/></Button>
       </Grid>
     </Grid>

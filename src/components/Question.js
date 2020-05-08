@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme =>
     },
     answer: {
       padding: theme.spacing(8)
+    },
+    option: {
+      textAlign: 'center'
     }
   })
 );
@@ -36,13 +39,11 @@ function Question(props) {
       <Grid item={true} xs={12} className={classes.question}>
         <h4 className="question">{currentQuestion.content}</h4>
       </Grid>
-      <Grid container={true}>
-        <Grid item={true} xs={6} >
-          <Button onClick={onAnswer}>Correct</Button>
-        </Grid>
-        <Grid item={true} xs={6} onClick={onAnswer}>
+      <Grid item={true} xs={6} className={classes.option}>
+        <Button onClick={onAnswer}>Correct</Button>
+      </Grid>
+      <Grid item={true} xs={6} className={classes.option}>
         <Button onClick={onAnswer}>InCorrect</Button>
-        </Grid>
       </Grid>
     </Grid>
   );
