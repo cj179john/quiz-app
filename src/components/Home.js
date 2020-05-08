@@ -41,7 +41,14 @@ function Home(props) {
     {
       map(activity => (
         <Grid item={true} xs={12} key={activity.id}>
-          <Button variant="contained" color="primary" component={Link} to='/questions'>{activity.name}</Button>
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={`/activities/${activity.id}/questions`}
+          >
+            {activity.name}
+          </Button>
         </Grid>
       ), values(activities))
     }

@@ -1,4 +1,4 @@
-import WithQuestion from './components/Activities/WithQuestions/WithQuestions';
+import WithQuestions from './components/Activities/WithQuestions/WithQuestions';
 import Home from './components/Home';
 
 export const routes = [
@@ -7,7 +7,7 @@ export const routes = [
     path: '/'
   },
   {
-    component: WithQuestion,
-    path: '/questions'
+    component: WithQuestions,
+    path: '/activities/:id/questions'
   }
 ];

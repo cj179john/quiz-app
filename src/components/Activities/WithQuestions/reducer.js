@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {isGetQuestionsSuccess} from './actions';
-import {indexBy} from 'ramda';
+import {indexBy, map} from 'ramda';
 
 const initialState = {
   allIds: [],
@@ -15,6 +15,7 @@ export const questionsOnly = combineReducers({
 });
 
 const indexById = indexBy((x) => x.id);
+const getId = map((x) => x.id);
 
 function byId(state = initialState.byId, action) {
   if (isGetQuestionsSuccess(action)) {
@@ -24,6 +25,9 @@ function byId(state = initialState.byId, action) {
 }
 
 function allIds(state = initialState.allIds, action) {
+  if (isGetQuestionsSuccess(action)) {
+    return getId(action.payload.data);
+  }
   return state;
 }
 
