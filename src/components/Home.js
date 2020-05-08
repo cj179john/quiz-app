@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Grid} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
+import {connect} from 'react-redux';
+import { getActivities } from '../actions';
+import {map, values} from 'ramda';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -17,8 +20,14 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-function Home() {
+function Home(props) {
+  const {activities, dispatch} = props;
+
   const classes = useStyles();
+
+  useEffect(() => {
+    dispatch(getActivities());
+  }, (dispatch, activities));
 
   return (
     <Grid
@@ -29,14 +38,21 @@ function Home() {
     className={classes.questionBox}
     alignItems="center"
   >
-    <Grid item={true} xs={12}>
-      <Button variant="contained" color="primary" component={Link} to='/questions'>Activity 1</Button>
-    </Grid>
-    <Grid item={true} xs={12}>
-      <Button variant="contained" color="primary" component={Link} to='/questions'>Activity 2</Button>
-    </Grid>
+    {
+      map(activity => (
+        <Grid item={true} xs={12} key={activity.id}>
+          <Button variant="contained" color="primary" component={Link} to='/questions'>{activity.name}</Button>
+        </Grid>
+      ), values(activities))
+    }
   </Grid>
   );
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  activities: state.activities.byId
+});
+
+const mapDispatchToProps = (dispatch) => ({dispatch});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

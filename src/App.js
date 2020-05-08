@@ -39,7 +39,6 @@ const App = () => {
       <div className={classes.root}>
         <div className={classes.contentGrid}>
           <Paper
-            container={true}
             className={classes.content}
           >
             <Content/>
