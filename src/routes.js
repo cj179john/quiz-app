@@ -1,4 +1,4 @@
-import Questions from './components/Questions';
+import WithQuestion from './components/Activities/WithQuestions/WithQuestions';
 import Home from './components/Home';
 
 export const routes = [
@@ -7,7 +7,7 @@ export const routes = [
     path: '/'
   },
   {
-    component: Questions,
+    component: WithQuestion,
     path: '/questions'
   }
 ];

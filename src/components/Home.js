@@ -3,7 +3,7 @@ import {Button, Grid} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import { getActivities } from '../actions';
+import { getActivities } from './Activities/actions';
 import {map, values} from 'ramda';
 
 const useStyles = makeStyles(theme =>
