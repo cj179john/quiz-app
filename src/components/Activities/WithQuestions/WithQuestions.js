@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import PropTypes from 'prop-types';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 import Question from '../../Question';
@@ -9,6 +8,7 @@ import {connect} from 'react-redux';
 import {getQuestions} from './actions';
 import {getActivities} from '../actions';
 import { Typography } from '@material-ui/core';
+import Result from '../../Result';
 
 function WithQuestions(props) {
   const {match, questions, dispatch, questionIds, activities} = props;
@@ -36,7 +36,7 @@ function WithQuestions(props) {
   }, [questionIds]);
 
   const onAnswer = () => {
-    if (currentId <= questionIds.length - 1) {
+    if (currentId <= questionIds.length) {
       setCurrentId(currentId + 1);
       setCurrentQuestion(questions[currentId + 1]);
     }
@@ -49,7 +49,12 @@ function WithQuestions(props) {
       </Grid>
     )
   }
-  console.log(currentQuestion);
+
+  if (currentId > questionIds.length) {
+    return (
+      <Result questions={questions} activity={activity} />
+    );
+  }
 
   return (
     <Grid container={true}>
