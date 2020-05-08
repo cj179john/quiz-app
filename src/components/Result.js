@@ -1,39 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
+import { Typography, List, ListItem, ListItemText, Divider, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    margin: 'auto'
+  },
+  header: {
+    textAlign: 'center'
+  },
+}));
 
 function Result(props) {
   const {activity, questions} = props;
-
+  const classes = useStyles();
   return (
-    <Grid
-      container={true}
-      spacing={3}
-      alignItems='center'
-      direction='column'
-    >
-      <Grid item={true} xs={12}>
-        <Typography variant="h6">{activity.name}</Typography>
-      </Grid>
-      <Grid item={true} xs={12}>
-        <Typography variant="h4">Results</Typography>
-      </Grid>
+    <List component="nav" className={classes.root} aria-label="result-list">
+      <ListItem>
+        <ListItemText primary={activity.name} />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary='Results' />
+      </ListItem>
+      <Divider light />
       {
         Object.keys(questions).map(id => {
           const question = questions[id];
           return (
-            <Grid item={true} xs={12} key={id}>
-              <Grid item={true} xs={6}>
-                Q{question.id}
-              </Grid>
-              <Grid item={true} xs={6}>
-                <Typography variant="h5">{question.isCorrect ? 'correct' : 'false'}</Typography>
-              </Grid>
-            </Grid>
+            <ListItem button key={id} divider={true}>
+              <ListItemText primary={`Q${question.id}`} />
+              <ListItemText primary={question.isCorrect ? 'correct' : 'false'} />
+            </ListItem>
           );
         })
       }
-    </Grid>
+    </List>
   );
 };
 

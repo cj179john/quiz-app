@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {Content} from './components/Content';
 import blue from '@material-ui/core/colors/blue';
+import { Card } from '@material-ui/core';
 
 const useStyles = makeStyles(theme =>
     createStyles({
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme =>
         left: "50%",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        width: "70%",
+        width: "50%",
         height: "75%"
       }
     })
@@ -38,11 +39,11 @@ const App = () => {
     <Router basename="/">
       <div className={classes.root}>
         <div className={classes.contentGrid}>
-          <Paper
+          <Card
             className={classes.content}
           >
             <Content/>
-          </Paper>
+          </Card>
         </div>
       </div>
     </Router>
