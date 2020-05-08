@@ -7,13 +7,23 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
 import {getQuestions} from './actions';
+import {getActivities} from '../actions';
 import { Typography } from '@material-ui/core';
 
 function WithQuestions(props) {
   const {match, questions, dispatch, questionIds, activities} = props;
+
   const id = match.params.id;
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentId, setCurrentId] = useState(1);
+  let activity = activities[id];
+
+  useEffect(() => {
+    dispatch(getActivities());
+    if (!activity) {
+      activity = activities[id];
+    }
+  }, [dispatch, id]);
 
   useEffect(() => {
     dispatch(getQuestions(id));
@@ -44,7 +54,7 @@ function WithQuestions(props) {
   return (
     <Grid container={true}>
       <Grid item={true} xs={12}>
-        <Question currentQuestion={currentQuestion} onAnswer={onAnswer} />
+        <Question currentQuestion={currentQuestion} activity={activity} onAnswer={onAnswer} round={null}/>
       </Grid>
       <Grid item={true} xs={12}>
         <Button component={Link} to="/"><HomeIcon/></Button>

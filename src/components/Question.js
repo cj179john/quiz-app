@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import HomeIcon from '@material-ui/icons/Home';
-import { Link as RouterLink } from 'react-router-dom';
 import { Grid, Typography, Button } from '@material-ui/core';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 
@@ -20,8 +17,9 @@ const useStyles = makeStyles(theme =>
 );
 
 function Question(props) {
-  const {onAnswer, currentQuestion} = props;
+  const {onAnswer, currentQuestion, activity, round} = props;
   const classes = useStyles();
+  const header = round ? `${activity.name} / ${round.name}` : activity.name;
 
   return (
     <Grid
@@ -30,10 +28,10 @@ function Question(props) {
       className={classes.questionBox}
     >
       <Grid item={true} xs={12}>
-        <Typography variant="h6">Activity Two / Round 1 </Typography>
+        <Typography variant="h6">{header}</Typography>
       </Grid>
       <Grid item={true} xs={12}>
-        <Typography variant="h4">Q1.</Typography>
+        <Typography variant="h4">Question {currentQuestion.order}</Typography>
       </Grid>
       <Grid item={true} xs={12} className={classes.question}>
         <h4 className="question">{currentQuestion.content}</h4>
@@ -49,9 +47,5 @@ function Question(props) {
     </Grid>
   );
 }
-
-// Question.propTypes = {
-//   content: PropTypes.string.isRequired
-// };
 
 export default Question;
