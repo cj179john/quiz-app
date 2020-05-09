@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   })
 );
 
-function WithRounds(props) {
+function AllRounds(props) {
   const {match, questions, dispatch, questionIds, activities, rounds, roundIds, questionCount} = props;
 
   const classes = useStyles();
@@ -143,4 +143,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({dispatch});
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithRounds);
+export default connect(mapStateToProps, mapDispatchToProps)(AllRounds);

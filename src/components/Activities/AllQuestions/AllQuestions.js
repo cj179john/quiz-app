@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   })
 );
 
-function WithQuestions(props) {
+function AllQuestions(props) {
   const {match, questions, dispatch, questionIds, activities} = props;
 
   const classes = useStyles();
@@ -87,4 +87,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({dispatch});
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithQuestions);
+export default connect(mapStateToProps, mapDispatchToProps)(AllQuestions);

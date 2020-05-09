@@ -1,6 +1,6 @@
-import WithQuestions from './components/Activities/WithQuestions/WithQuestions';
+import AllQuestions from './components/Activities/AllQuestions/AllQuestions';
 import Home from './components/Home';
-import WithRounds from './components/Activities/WithRounds/WithRounds';
+import AllRounds from './components/Activities/AllRounds/AllRounds';
 
 export const routes = [
   {
@@ -8,11 +8,11 @@ export const routes = [
     path: '/'
   },
   {
-    component: WithQuestions,
+    component: AllQuestions,
     path: '/activities/:id/questions'
   },
   {
-    component: WithRounds,
+    component: AllRounds,
     path: '/activities/:id/rounds'
   }
 ];
