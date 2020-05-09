@@ -29,6 +29,18 @@ export function getRoundQuestions(activityId, roundId) {
   };
 }
 
+export function getQuestionCount(activityId) {
+  return {
+    payload: {
+      client: 'api',
+      request: {
+        url: `/activities/${activityId}/questions/count`
+      }
+    },
+    type: GET_ROUNDS_QUESTIONS_COUNT
+  };
+}
+
 export function isGetRoundsSuccess(action) {
   return action.type === GET_ROUNDS_SUCCESS;
 }

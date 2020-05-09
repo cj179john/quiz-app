@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {isGetRoundQuestionsSuccess, isGetRoundsSuccess} from './actions';
+import {isGetRoundQuestionsSuccess, isGetRoundsSuccess, isGetRoundQuestionsCountSuccess} from './actions';
 import {indexBy, map} from 'ramda';
 
 const initialState = {
@@ -50,5 +50,8 @@ function allOrders(state = initialState.allOrders, action) {
 }
 
 function count(state = initialState.count, action) {
+  if (isGetRoundQuestionsCountSuccess(action)) {
+    return action.payload.data.count;
+  }
   return state;
 }

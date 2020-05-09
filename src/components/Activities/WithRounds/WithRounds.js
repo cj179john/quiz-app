@@ -5,10 +5,16 @@ import Question from '../../Question';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
-import {getRounds, getRoundQuestions} from './actions';
+import {getRounds, getRoundQuestions, getQuestionCount} from './actions';
 import {getActivities} from '../actions';
 import { Typography, makeStyles } from '@material-ui/core';
 import Result from '../../Result';
+import CacheService from '../../../services/cache-service';
+
+const cacheService = new CacheService();
+
+const CACHE_ITEM_NAME = 'processedQuestions';
+cacheService.resetItem(CACHE_ITEM_NAME, []);
 
 const useStyles = makeStyles(theme => ({
     homeIcon: {
@@ -18,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 );
 
 function WithRounds(props) {
-  const {match, questions, dispatch, questionIds, activities, rounds, roundIds} = props;
+  const {match, questions, dispatch, questionIds, activities, rounds, roundIds, questionCount} = props;
 
   const classes = useStyles();
   const id = match.params.id;
@@ -27,6 +33,7 @@ function WithRounds(props) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1);
   const [waitForNextRound, setWaitForNextRound] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   const moveToNextRound = () => {
     setWaitForNextRound(false);
@@ -43,6 +50,7 @@ function WithRounds(props) {
       activity = activities[id];
     }
     dispatch(getRounds(id));
+    dispatch(getQuestionCount(id));
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -63,6 +71,9 @@ function WithRounds(props) {
   }, [questionIds]);
 
   const onAnswer = () => {
+
+    cacheService.addItem(CACHE_ITEM_NAME, currentQuestion);
+
     if (currentRoundOrder <= roundIds.length) {
       if (currentQuestionOrder < questionIds.length) {
         const nextId = currentQuestionOrder + 1;
@@ -72,6 +83,11 @@ function WithRounds(props) {
       } else if (currentRoundOrder < roundIds.length) {
         setWaitForNextRound(true);
       }
+    }
+
+    const processed = cacheService.getItem(CACHE_ITEM_NAME).length;
+    if (processed === questionCount) {
+      setShowResult(true);
     }
   };
 
@@ -83,7 +99,7 @@ function WithRounds(props) {
     )
   }
 
-  if (currentRoundOrder > roundIds.length) {
+  if (showResult) {
     return (
       <Result questions={questions} activity={activity} />
     );
@@ -111,6 +127,7 @@ function WithRounds(props) {
 const mapStateToProps = (state) => ({
   questions: state.withRounds.byOrder,
   questionIds: state.withRounds.allOrders,
+  questionCount: state.withRounds.count,
   activities: state.activities.byId,
   rounds: state.withRounds.roundByOrder,
   roundIds: state.withRounds.roundOrders,
