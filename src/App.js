@@ -12,13 +12,12 @@ const useStyles = makeStyles(theme =>
         padding: theme.spacing(3)
       },
       root: {
-        display: 'flex',
+        display: 'flex'
       },
       content: {
         [theme.breakpoints.up('md')]: {
           userSelect: 'none',
           overflowX: 'hidden',
-          margin: 'auto',
           position: 'absolute',
           top: '50%',
           left: '50%',
@@ -37,9 +36,7 @@ const App = () => {
     <Router basename={config.basename}>
       <div className={classes.root}>
         <div className={classes.contentGrid}>
-          <Card
-            className={classes.content}
-          >
+          <Card className={classes.content}>
             <Content/>
           </Card>
         </div>

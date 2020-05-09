@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Divider, makeStyles } from '@material-ui/core';
+import { List, ListItem, ListItemText, Divider, makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 360,
     margin: 'auto'
   },
-  header: {
+  center: {
     textAlign: 'center'
   },
 }));
@@ -18,18 +18,18 @@ function CommonResult(props) {
   const classes = useStyles();
   return (
     <List component="nav" className={classes.root} aria-label="result-list">
-      <ListItem>
-        <ListItemText primary={activity.name} />
+      <ListItem className={classes.center}>
+          <ListItemText><Typography variant="h5">{activity.name}</Typography></ListItemText>
       </ListItem>
-      <ListItem>
-        <ListItemText primary='Results' />
+      <ListItem className={classes.center}>
+        <ListItemText><Typography variant="h5">Results</Typography></ListItemText>
       </ListItem>
       <Divider light />
       {
         Object.keys(questions).map(id => {
           const question = questions[id];
           return (
-            <ListItem button key={id} divider={true}>
+            <ListItem button key={id} divider={true} className={classes.center}>
               <ListItemText primary={`Q${question.id}`} />
               <ListItemText primary={question.isCorrect ? 'correct' : 'false'} />
             </ListItem>

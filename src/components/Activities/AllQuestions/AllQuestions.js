@@ -12,7 +12,7 @@ import CommonResult from '../../Commons/CommonResult';
 
 const useStyles = makeStyles(theme => ({
     homeIcon: {
-      marginLeft: '50%'
+      marginLeft: '45%'
     }
   })
 );
@@ -66,11 +66,8 @@ function AllQuestions(props) {
 
   return (
     <Grid container={true}>
-      <Grid item={true} xs={12}>
+      <Grid item={true}>
         <Question currentQuestion={currentQuestion} activity={activity} onAnswer={onAnswer} round={null}/>
-      </Grid>
-      <Grid item={true} xs={12} className={classes.homeIcon}>
-        <Button component={Link} to="/"><HomeIcon/></Button>
       </Grid>
     </Grid>
   );

@@ -7,9 +7,6 @@ const useStyles = makeStyles(theme =>
     questionBox: {
       padding: theme.spacing(8)
     },
-    question: {
-      border: 1
-    },
     answer: {
       padding: theme.spacing(8)
     },
@@ -27,11 +24,11 @@ function Question(props) {
   if (waitForNextRound) {
     return (
       <Grid
-      container={true}
-      spacing={3}
-      className={classes.questionBox}
-    >
-      <Grid item={true} xs={12} className={classes.option}>
+        container={true}
+        spacing={8}
+        className={classes.questionBox}
+      >
+      <Grid item={true} className={classes.option} xs={12}>
         <Button onClick={moveToNextRound}>Next Round</Button>
       </Grid>
     </Grid>
@@ -40,17 +37,17 @@ function Question(props) {
   return (
     <Grid
       container={true}
-      spacing={3}
+      spacing={8}
       className={classes.questionBox}
     >
       <Grid item={true} xs={12}>
-        <Typography variant="h6">{header}</Typography>
+        <Typography variant="h6">{header.toUpperCase()}</Typography>
       </Grid>
       <Grid item={true} xs={12}>
-        <Typography variant="h4">Question {currentQuestion.order}</Typography>
+        <Typography variant="h5">Question {currentQuestion.order}.</Typography>
       </Grid>
-      <Grid item={true} xs={12} className={classes.question}>
-        <h4 className="question">{currentQuestion.content}</h4>
+      <Grid item={true} xs={12}>
+        <Typography variant="h5" className="question">{currentQuestion.content}.</Typography>
       </Grid>
       <Grid item={true} xs={6} className={classes.option}>
         <Button onClick={onAnswer}>Correct</Button>

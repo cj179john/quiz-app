@@ -18,7 +18,7 @@ cacheService.resetItem(CACHE_ITEM_NAME, []);
 
 const useStyles = makeStyles(theme => ({
     homeIcon: {
-      marginLeft: '50%'
+      marginLeft: '45%'
     }
   })
 );
@@ -90,7 +90,7 @@ function AllRounds(props) {
     }
   };
 
-  const BackToHome = () => (<Button onClick={clearCache} component={Link} to="/"><HomeIcon/></Button>);
+  const BackToHome = () => (<Button onClick={clearCache} className={classes.homeIcon} component={Link} to="/"><HomeIcon/></Button>);
 
   if (currentQuestion === null) {
     return (
@@ -121,9 +121,6 @@ function AllRounds(props) {
           waitForNextRound={waitForNextRound}
           moveToNextRound={moveToNextRound}
         />
-      </Grid>
-      <Grid item={true} xs={12} className={classes.homeIcon}>
-        <BackToHome />
       </Grid>
     </Grid>
   );
