@@ -48,9 +48,6 @@ function AllRounds(props) {
 
   useEffect(() => {
     dispatch(getActivities());
-    if (!activity) {
-      activity = activities[id];
-    }
     dispatch(getRounds(id));
     dispatch(getQuestionCount(id));
   }, [dispatch, id]);
@@ -59,18 +56,18 @@ function AllRounds(props) {
     if (roundIds && roundIds.length > 0) {
       setCurrentRound(rounds[currentRoundOrder]);
     }
-  }, [roundIds]);
+  }, [roundIds, rounds, currentRoundOrder]);
 
   useEffect(() => {
     dispatch(getRoundQuestions(id, currentRoundOrder))
     setCurrentQuestionOrder(1);
-  }, [currentRoundOrder]);
+  }, [dispatch, id, currentRoundOrder]);
 
   useEffect(() => {
     if (questionIds && questionIds.length > 0) {
       setCurrentQuestion(questions[currentQuestionOrder]);
     }
-  }, [questionIds]);
+  }, [questionIds, currentQuestionOrder, questions]);
 
   const onAnswer = () => {
 

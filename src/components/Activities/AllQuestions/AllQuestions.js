@@ -28,9 +28,6 @@ function AllQuestions(props) {
 
   useEffect(() => {
     dispatch(getActivities());
-    if (!activity) {
-      activity = activities[id];
-    }
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -41,7 +38,7 @@ function AllQuestions(props) {
     if (questionIds && questionIds.length > 0) {
       setCurrentQuestion(questions[currentId]);
     }
-  }, [questionIds]);
+  }, [questionIds, currentId, questions]);
 
   const onAnswer = () => {
     if (currentId <= questionIds.length) {
@@ -62,7 +59,7 @@ function AllQuestions(props) {
     return (
       <>
         <Result questions={questions} activity={activity} />
-        <Button component={Link} to="/"><HomeIcon/></Button>
+        <Button className={classes.homeIcon} component={Link} to="/"><HomeIcon/></Button>
       </>
     );
   }
