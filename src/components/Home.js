@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {Button, Grid} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {connect} from 'react-redux';
 import { getActivities } from './Activities/actions';
 import {map, values} from 'ramda';
+import { List, ListItem, ListItemText, Divider } from '@material-ui/core';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -37,29 +37,27 @@ function Home(props) {
   }, [dispatch]);
 
   return (
-    <Grid
-    container={true}
-    direction="column"
-    justify="center"
-    spacing={3}
-    className={classes.questionBox}
-    alignItems="center"
-  >
-    {
-      map(activity => (
-        <Grid item={true} xs={12} key={activity.id}>
-          <Button
+    <List component="nav" className={classes.root} aria-label="result-list">
+      <ListItem>
+        <ListItemText primary="Quiz" />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary='Results' />
+      </ListItem>
+      <Divider light />
+      {
+        map(activity => (
+          <ListItem button
             variant="contained"
             color="primary"
             component={Link}
             to={links(activity.id)[activity.id]}
           >
             {activity.name}
-          </Button>
-        </Grid>
-      ), values(activities))
-    }
-  </Grid>
+          </ListItem>
+        ), values(activities))
+      }
+    </List>
   );
 }
 
