@@ -3,6 +3,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {Content} from './components/Content';
 import { Card } from '@material-ui/core';
+import config from './config';
 
 const useStyles = makeStyles(theme =>
     createStyles({
@@ -30,7 +31,7 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <Router basename="/">
+    <Router basename={config.basename}>
       <div className={classes.root}>
         <div className={classes.contentGrid}>
           <Card
