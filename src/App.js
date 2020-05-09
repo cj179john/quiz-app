@@ -15,13 +15,16 @@ const useStyles = makeStyles(theme =>
         display: 'flex',
       },
       content: {
-        userSelect: 'none',
-        overflowX: 'hidden',
-        margin: 'auto',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        [theme.breakpoints.up('md')]: {
+          userSelect: 'none',
+          overflowX: 'hidden',
+          margin: 'auto',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          minWidth: "30%"
+        }
       }
     })
 );
