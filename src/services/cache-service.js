@@ -1,6 +1,11 @@
 export default class CacheService {
+
+  constructor() {
+    this.storage = window.sessionStorage;
+  }
+
   addItem(itemName, data) {
-    let existing = localStorage.getItem(itemName);
+    let existing = this.storage.getItem(itemName);
     let updated;
 
     if (!existing) {
@@ -10,15 +15,15 @@ export default class CacheService {
       updated.push(data);
     }
 
-    localStorage.setItem(itemName, JSON.stringify(updated));
+    this.storage.setItem(itemName, JSON.stringify(updated));
   }
 
   getItem(itemName) {
-    const existing = localStorage.getItem(itemName);
+    const existing = this.storage.getItem(itemName);
     return existing ? JSON.parse(existing) : [];
   }
 
   resetItem(itemName, initialValue = null) {
-    return localStorage.setItem(itemName, JSON.stringify(initialValue));
+    return this.storage.setItem(itemName, JSON.stringify(initialValue));
   }
 }
