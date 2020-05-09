@@ -27,6 +27,10 @@ function Home(props) {
   const {activities, dispatch} = props;
 
   const classes = useStyles();
+  const links = (id) => ({
+    1: `/activities/${id}/questions`,
+    2: `/activities/${id}/rounds`
+  });
 
   useEffect(() => {
     dispatch(getActivities());
@@ -48,7 +52,7 @@ function Home(props) {
             variant="contained"
             color="primary"
             component={Link}
-            to={`/activities/${activity.id}/questions`}
+            to={links(activity.id)[activity.id]}
           >
             {activity.name}
           </Button>
