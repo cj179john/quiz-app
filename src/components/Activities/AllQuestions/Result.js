@@ -1,9 +1,5 @@
 import React from 'react';
 import { List, ListItem, ListItemText, Divider, makeStyles } from '@material-ui/core';
-import CacheService from '../services/cache-service';
-import {indexBy} from 'ramda';
-
-const cacheService = new CacheService();
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,17 +13,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Result(props) {
-  const {activity, questions, cacheName} = props;
-
-  let cachedQuestions = {};
-
-  if (!questions) {
-    cachedQuestions = indexBy((x) => x.id, cacheService.getItem(cacheName));
-  } else {
-    cachedQuestions = questions;
-  }
-
+  const {activity, questions} = props;
   const classes = useStyles();
+
   return (
     <List component="nav" className={classes.root} aria-label="result-list">
       <ListItem>
@@ -38,8 +26,8 @@ function Result(props) {
       </ListItem>
       <Divider light />
       {
-        Object.keys(cachedQuestions).map(id => {
-          const question = cachedQuestions[id];
+        Object.keys(questions).map(id => {
+          const question = questions[id];
           return (
             <ListItem button key={id} divider={true}>
               <ListItemText primary={`Q${question.id}`} />

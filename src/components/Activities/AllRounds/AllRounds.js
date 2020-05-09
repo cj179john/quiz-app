@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {getRounds, getRoundQuestions, getQuestionCount} from './actions';
 import {getActivities} from '../actions';
 import { Typography, makeStyles } from '@material-ui/core';
-import Result from '../../Result';
+import Result from './Result';
 import CacheService from '../../../services/cache-service';
 
 const cacheService = new CacheService();
@@ -103,7 +103,7 @@ function AllRounds(props) {
   if (showResult) {
     return (
       <>
-        <Result questions={null} activity={activity} cacheName={CACHE_ITEM_NAME}/>
+        <Result activity={activity} cacheName={CACHE_ITEM_NAME}/>
         <BackToHome />
       </>
 

@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {getQuestions} from './actions';
 import {getActivities} from '../actions';
 import { Typography, makeStyles } from '@material-ui/core';
-import Result from '../../Result';
+import Result from './Result';
 
 const useStyles = makeStyles(theme => ({
     homeIcon: {
