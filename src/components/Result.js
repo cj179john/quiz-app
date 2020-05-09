@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import Grid from '@material-ui/core/Grid';
-import { Typography, List, ListItem, ListItemText, Divider, makeStyles } from '@material-ui/core';
+import React from 'react';
+import { List, ListItem, ListItemText, Divider, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {

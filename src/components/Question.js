@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme =>
 function Question(props) {
   const {onAnswer, currentQuestion, activity, round} = props;
   const classes = useStyles();
-  const header = round ? `${activity.name} / ${round.name}` : activity.name;
+  const header = round ? `${activity.name} / ${round.title}` : activity.name;
 
   return (
     <Grid

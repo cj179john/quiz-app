@@ -1,9 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {Content} from './components/Content';
-import blue from '@material-ui/core/colors/blue';
 import { Card } from '@material-ui/core';
 
 const useStyles = makeStyles(theme =>

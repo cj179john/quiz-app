@@ -5,7 +5,7 @@ import Question from '../../Question';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
-import {getQuestions, getRounds, getRoundQuestions} from './actions';
+import {getRounds, getRoundQuestions} from './actions';
 import {getActivities} from '../actions';
 import { Typography, makeStyles } from '@material-ui/core';
 import Result from '../../Result';
@@ -23,9 +23,9 @@ function WithRounds(props) {
   const classes = useStyles();
   const id = match.params.id;
   const [currentRound, setCurrentRound] = useState(null);
-  const [currentRoundId, setCurrentRoundId] = useState(1);
+  const [currentRoundOrder, setCurrentRoundOrder] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [currentId, setCurrentId] = useState(1);
+  const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1);
   let activity = activities[id];
 
   useEffect(() => {
@@ -38,24 +38,33 @@ function WithRounds(props) {
 
   useEffect(() => {
     if (roundIds && roundIds.length > 0) {
-      setCurrentRound(rounds[currentRoundId]);
+      setCurrentRound(rounds[currentRoundOrder]);
     }
   }, [roundIds]);
 
   useEffect(() => {
-    dispatch(getRoundQuestions(id, currentRoundId))
-  }, [currentRound]);
+    dispatch(getRoundQuestions(id, currentRoundOrder))
+    setCurrentQuestionOrder(1);
+  }, [currentRoundOrder]);
 
   useEffect(() => {
     if (questionIds && questionIds.length > 0) {
-      setCurrentQuestion(questions[currentId]);
+      setCurrentQuestion(questions[currentQuestionOrder]);
     }
   }, [questionIds]);
 
   const onAnswer = () => {
-    if (currentId <= questionIds.length) {
-      setCurrentId(currentId + 1);
-      setCurrentQuestion(questions[currentId + 1]);
+    if (currentRoundOrder <= roundIds.length) {
+      if (currentQuestionOrder < questionIds.length) {
+        const nextId = currentQuestionOrder + 1;
+        setCurrentQuestionOrder(nextId);
+        setCurrentQuestion(questions[nextId]);
+
+      } else {
+        const nextRoundOrder = currentRoundOrder + 1;
+        setCurrentRoundOrder(nextRoundOrder);
+        setCurrentRound(rounds[nextRoundOrder]);
+      }
     }
   };
 
@@ -67,7 +76,7 @@ function WithRounds(props) {
     )
   }
 
-  if (currentId > questionIds.length) {
+  if (currentRoundOrder > roundIds.length) {
     return (
       <Result questions={questions} activity={activity} />
     );
