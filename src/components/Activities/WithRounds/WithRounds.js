@@ -26,6 +26,15 @@ function WithRounds(props) {
   const [currentRoundOrder, setCurrentRoundOrder] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1);
+  const [waitForNextRound, setWaitForNextRound] = useState(false);
+
+  const moveToNextRound = () => {
+    setWaitForNextRound(false);
+    const nextRoundOrder = currentRoundOrder + 1;
+    setCurrentRoundOrder(nextRoundOrder);
+    setCurrentRound(rounds[nextRoundOrder]);
+  };
+
   let activity = activities[id];
 
   useEffect(() => {
@@ -60,10 +69,8 @@ function WithRounds(props) {
         setCurrentQuestionOrder(nextId);
         setCurrentQuestion(questions[nextId]);
 
-      } else {
-        const nextRoundOrder = currentRoundOrder + 1;
-        setCurrentRoundOrder(nextRoundOrder);
-        setCurrentRound(rounds[nextRoundOrder]);
+      } else if (currentRoundOrder < roundIds.length) {
+        setWaitForNextRound(true);
       }
     }
   };
@@ -85,7 +92,14 @@ function WithRounds(props) {
   return (
     <Grid container={true}>
       <Grid item={true} xs={12}>
-        <Question currentQuestion={currentQuestion} activity={activity} onAnswer={onAnswer} round={currentRound}/>
+        <Question
+          currentQuestion={currentQuestion}
+          activity={activity}
+          onAnswer={onAnswer}
+          round={currentRound}
+          waitForNextRound={waitForNextRound}
+          moveToNextRound={moveToNextRound}
+        />
       </Grid>
       <Grid item={true} xs={12} className={classes.homeIcon}>
         <Button component={Link} to="/"><HomeIcon/></Button>

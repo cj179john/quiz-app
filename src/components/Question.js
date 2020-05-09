@@ -20,10 +20,23 @@ const useStyles = makeStyles(theme =>
 );
 
 function Question(props) {
-  const {onAnswer, currentQuestion, activity, round} = props;
+  const {onAnswer, currentQuestion, activity, round, waitForNextRound, moveToNextRound} = props;
   const classes = useStyles();
   const header = round ? `${activity.name} / ${round.title}` : activity.name;
 
+  if (waitForNextRound) {
+    return (
+      <Grid
+      container={true}
+      spacing={3}
+      className={classes.questionBox}
+    >
+      <Grid item={true} xs={12} className={classes.option}>
+        <Button onClick={moveToNextRound}>Next Round</Button>
+      </Grid>
+    </Grid>
+    );
+  }
   return (
     <Grid
       container={true}
