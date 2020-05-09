@@ -1,39 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import HomeIcon from '@material-ui/icons/Home';
-import { Link } from 'react-router-dom';
 import Question from '../../Question';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
 import {getRounds, getRoundQuestions, getQuestionCount} from './actions';
 import {getActivities} from '../actions';
-import { Typography, makeStyles } from '@material-ui/core';
+import {Typography} from '@material-ui/core';
 import Result from './Result';
 import CacheService from '../../../services/cache-service';
+import BackToHome from '../../Commons/BackToHome';
 
 const cacheService = new CacheService();
 const CACHE_ITEM_NAME = 'processedQuestions';
 
 cacheService.resetItem(CACHE_ITEM_NAME, []);
 
-const useStyles = makeStyles(theme => ({
-    homeIcon: {
-      marginLeft: '45%'
-    }
-  })
-);
-
 function AllRounds(props) {
   const {match, questions, dispatch, questionIds, activities, rounds, roundIds, questionCount} = props;
-
-  const classes = useStyles();
-  const id = match.params.id;
   const [currentRound, setCurrentRound] = useState(null);
   const [currentRoundOrder, setCurrentRoundOrder] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentQuestionOrder, setCurrentQuestionOrder] = useState(1);
   const [waitForNextRound, setWaitForNextRound] = useState(false);
   const [showResult, setShowResult] = useState(false);
+
+  const id = match.params.id;
 
   const moveToNextRound = () => {
     setWaitForNextRound(false);
@@ -90,8 +80,6 @@ function AllRounds(props) {
     }
   };
 
-  const BackToHome = () => (<Button onClick={clearCache} className={classes.homeIcon} component={Link} to="/"><HomeIcon/></Button>);
-
   if (currentQuestion === null) {
     return (
       <Grid container={true}>
@@ -104,7 +92,7 @@ function AllRounds(props) {
     return (
       <>
         <Result activity={activity} cacheName={CACHE_ITEM_NAME}/>
-        <BackToHome />
+        <BackToHome onClick={clearCache} />
       </>
 
     );
