@@ -34,7 +34,7 @@ function Home(props) {
 
   useEffect(() => {
     dispatch(getActivities());
-  }, (dispatch, activities));
+  }, [dispatch]);
 
   return (
     <Grid
