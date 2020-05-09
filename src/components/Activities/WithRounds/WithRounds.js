@@ -12,8 +12,8 @@ import Result from '../../Result';
 import CacheService from '../../../services/cache-service';
 
 const cacheService = new CacheService();
-
 const CACHE_ITEM_NAME = 'processedQuestions';
+
 cacheService.resetItem(CACHE_ITEM_NAME, []);
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +41,8 @@ function WithRounds(props) {
     setCurrentRoundOrder(nextRoundOrder);
     setCurrentRound(rounds[nextRoundOrder]);
   };
+
+  const clearCache = () => cacheService.resetItem(CACHE_ITEM_NAME, []);
 
   let activity = activities[id];
 
@@ -91,6 +93,8 @@ function WithRounds(props) {
     }
   };
 
+  const BackToHome = () => (<Button onClick={clearCache} component={Link} to="/"><HomeIcon/></Button>);
+
   if (currentQuestion === null) {
     return (
       <Grid container={true}>
@@ -101,7 +105,11 @@ function WithRounds(props) {
 
   if (showResult) {
     return (
-      <Result questions={null} activity={activity} cacheName={CACHE_ITEM_NAME}/>
+      <>
+        <Result questions={null} activity={activity} cacheName={CACHE_ITEM_NAME}/>
+        <BackToHome />
+      </>
+
     );
   }
 
@@ -118,7 +126,7 @@ function WithRounds(props) {
         />
       </Grid>
       <Grid item={true} xs={12} className={classes.homeIcon}>
-        <Button component={Link} to="/"><HomeIcon/></Button>
+        <BackToHome />
       </Grid>
     </Grid>
   );

@@ -60,7 +60,10 @@ function WithQuestions(props) {
 
   if (currentId > questionIds.length) {
     return (
-      <Result questions={questions} activity={activity} />
+      <>
+        <Result questions={questions} activity={activity} />
+        <Button component={Link} to="/"><HomeIcon/></Button>
+      </>
     );
   }
 

@@ -18,8 +18,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Result(props) {
   const {activity, questions, cacheName} = props;
-  const cachedQuestions = questions ? questions : indexBy((x) => x.id, cacheService.getItem(cacheName));
-  console.log(cachedQuestions)
+
+  let cachedQuestions = {};
+
+  if (!questions) {
+    cachedQuestions = indexBy((x) => x.id, cacheService.getItem(cacheName));
+  } else {
+    cachedQuestions = questions;
+  }
+
   const classes = useStyles();
   return (
     <List component="nav" className={classes.root} aria-label="result-list">
