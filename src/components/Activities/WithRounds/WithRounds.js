@@ -101,7 +101,7 @@ function WithRounds(props) {
 
   if (showResult) {
     return (
-      <Result questions={questions} activity={activity} />
+      <Result questions={null} activity={activity} cacheName={CACHE_ITEM_NAME}/>
     );
   }
 
