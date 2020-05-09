@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Result(props) {
+function CommonResult(props) {
   const {activity, questions} = props;
-  const classes = useStyles();
 
+  const classes = useStyles();
   return (
     <List component="nav" className={classes.root} aria-label="result-list">
       <ListItem>
@@ -40,4 +40,4 @@ function Result(props) {
   );
 };
 
-export default Result;
+export default CommonResult;

@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {getQuestions} from './actions';
 import {getActivities} from '../actions';
 import { Typography, makeStyles } from '@material-ui/core';
-import Result from './Result';
+import CommonResult from '../../Commons/CommonResult';
 
 const useStyles = makeStyles(theme => ({
     homeIcon: {
@@ -58,7 +58,7 @@ function AllQuestions(props) {
   if (currentId > questionIds.length) {
     return (
       <>
-        <Result questions={questions} activity={activity} />
+        <CommonResult questions={questions} activity={activity} />
         <Button className={classes.homeIcon} component={Link} to="/"><HomeIcon/></Button>
       </>
     );
