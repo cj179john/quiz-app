@@ -1,4 +1,22 @@
+# Quiz App
+
+UI for quiz application
+
+## Home Page URL
+
+'https://cj179john.github.io/quiz-app'
+
+## Environment Variables
+
+export REACT_APP_API_URL='http://localhost:3009'
+
+## Create React App boilerplate
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### Deployment
+
+Execute `yarn deploy` to deploy the app on github pages.
 
 ## Available Scripts
 
@@ -7,7 +25,7 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+Open [http://localhost:3009](http://localhost:3009) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
@@ -37,32 +55,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `yarn deploy`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Build the app for production to the `build` folder.<br />
+Deploy the built app to github page hosting platform in the master branch.<br />
