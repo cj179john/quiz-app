@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, ListItem, ListItemText, Divider, makeStyles, Typography } from '@material-ui/core';
+import {SingleQuestion} from '../../Commons/SingleQuestion';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CommonResult(props) {
+function Result(props) {
   const {activity, questions} = props;
 
   const classes = useStyles();
@@ -29,10 +30,7 @@ function CommonResult(props) {
         Object.keys(questions).map(id => {
           const question = questions[id];
           return (
-            <ListItem button key={id} divider={true} className={classes.center}>
-              <ListItemText primary={`Q${question.id}`} />
-              <ListItemText primary={question.isCorrect ? 'correct' : 'false'} />
-            </ListItem>
+            <SingleQuestion question={question} />
           );
         })
       }
@@ -40,4 +38,4 @@ function CommonResult(props) {
   );
 };
 
-export default CommonResult;
+export default Result;

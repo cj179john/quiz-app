@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {getQuestions} from './actions';
 import {getActivities} from '../actions';
 import { Typography } from '@material-ui/core';
-import CommonResult from '../../Commons/CommonResult';
+import Result from './Result';
 import BackToHome from '../../Commons/BackToHome';
 
 function AllQuestions(props) {
@@ -48,7 +48,7 @@ function AllQuestions(props) {
   if (currentId > questionIds.length) {
     return (
       <>
-        <CommonResult questions={questions} activity={activity} />
+        <Result questions={questions} activity={activity} />
         <BackToHome />
       </>
     );

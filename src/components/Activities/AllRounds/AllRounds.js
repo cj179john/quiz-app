@@ -91,7 +91,7 @@ function AllRounds(props) {
   if (showResult) {
     return (
       <>
-        <Result activity={activity} cacheName={CACHE_ITEM_NAME}/>
+        <Result activity={activity} cacheName={CACHE_ITEM_NAME} rounds={rounds}/>
         <BackToHome onClick={clearCache} />
       </>
 
