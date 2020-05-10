@@ -64,9 +64,9 @@ function AllQuestions(props) {
 }
 
 const mapStateToProps = (state) => ({
-  questions: state.questionsOnly.byId,
-  questionIds: state.questionsOnly.allIds,
-  activities: state.activities.byId
+  questions: state.questionsOnly.byOrder,
+  questionIds: state.questionsOnly.allOrders,
+  activities: state.activities.byId,
 });
 
 const mapDispatchToProps = (dispatch) => ({dispatch});

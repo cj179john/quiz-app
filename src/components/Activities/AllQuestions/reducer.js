@@ -3,30 +3,30 @@ import {isGetQuestionsSuccess} from './actions';
 import {indexBy, map} from 'ramda';
 
 const initialState = {
-  allIds: [],
-  byId: {},
+  allOrders: [],
+  byOrder: {},
   count: null
 };
 
 export const questionsOnly = combineReducers({
-  allIds,
-  byId,
+  allOrders,
+  byOrder,
   count
 });
 
-const indexById = indexBy((x) => x.id);
-const getId = map((x) => x.id);
+const indexByOrder = indexBy((x) => x.order);
+const getOrder = map((x) => x.order);
 
-function byId(state = initialState.byId, action) {
+function byOrder(state = initialState.byOrder, action) {
   if (isGetQuestionsSuccess(action)) {
-    return indexById(action.payload.data);
+    return indexByOrder(action.payload.data);
   }
   return state;
 }
 
-function allIds(state = initialState.allIds, action) {
+function allOrders(state = initialState.allOrders, action) {
   if (isGetQuestionsSuccess(action)) {
-    return getId(action.payload.data);
+    return getOrder(action.payload.data);
   }
   return state;
 }
