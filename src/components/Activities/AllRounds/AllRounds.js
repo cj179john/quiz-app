@@ -6,7 +6,7 @@ import {getRounds, getRoundQuestions, getQuestionCount} from './actions';
 import {getActivities} from '../actions';
 import {Typography} from '@material-ui/core';
 import Result from './Result';
-import CacheService from '../../../services/cache-service';
+import CacheService from '../../../services/CacheService';
 import BackToHome from '../../Commons/BackToHome';
 
 const cacheService = new CacheService();

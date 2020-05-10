@@ -1,5 +1,5 @@
 import React from 'react';
-import CacheService from '../../../services/cache-service';
+import CacheService from '../../../services/CacheService';
 import CommonResult from '../../Commons/CommonResult';
 import {indexBy} from 'ramda';
 

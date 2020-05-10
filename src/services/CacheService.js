@@ -1,7 +1,7 @@
 export default class CacheService {
 
-  constructor() {
-    this.storage = window.sessionStorage;
+  constructor(storage = window.sessionStorage) {
+    this.storage = storage;
   }
 
   addItem(itemName, data) {

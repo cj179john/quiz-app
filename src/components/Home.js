@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-function Home(props) {
+export function Home(props) {
   const {activities, dispatch} = props;
 
   const classes = useStyles();
