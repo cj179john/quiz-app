@@ -115,10 +115,6 @@ function AllRounds(props) {
 }
 
 const mapStateToProps = (state) => ({
-  questions: state.withRounds.byOrder,
-  questionIds: state.withRounds.allOrders,
-  questionCount: state.withRounds.count,
-  activities: state.activities.byId,
   rounds: state.withRounds.roundByOrder,
   roundIds: state.withRounds.roundOrders,
 });
