@@ -6,6 +6,12 @@ UI for quiz application
 
 'https://cj179john.github.io/quiz-app'
 
+## TODO
+
+In the front end app, Session storage was used to contain the processed questions. This is unnecessary when redux is used for state management. A better approach would be splitting the "AllRounds" component to a hierarchy of components. Such as, "Rounds" -> "Round" -> "Questions".So, the processed questions can be maintained by a parent state rather than getting refresh with everything bundled in a much larger component as wha it is now.
+
+Also, automated deployment script and pipline scripts would be needed for smooth deployment processs
+
 ## Environment Variables
 
 export REACT_APP_API_URL='http://localhost:3009'
