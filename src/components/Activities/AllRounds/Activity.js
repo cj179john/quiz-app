@@ -4,20 +4,31 @@ import {getActivities} from '../actions';
 import Rounds from './Rounds';
 import Grid from '@material-ui/core/Grid';
 import {Typography} from '@material-ui/core';
+import Result from './Result';
+import BackToHome from '../../Commons/BackToHome';
 
 const Activity = (props) => {
-  const {match, dispatch, activities} = props;
+  const {match, dispatch, activities, processed} = props;
+  const [showResult, setShowResult] = useState(false);
 
   const id = match.params.id;
-
-  let activity = activities[id];
+  const activity = activities[id];
 
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch, id]);
 
+  if (showResult) {
+    return (
+      <>
+        <Result activity={activity} processed={processed} />
+        <BackToHome />
+      </>
+    );
+  }
+
   if (activity) {
-    return (<Rounds activity={activity} />)
+    return (<Rounds activity={activity} setShowResult={setShowResult} />)
   } else {
     return (
       <Grid container={true}>
@@ -29,6 +40,7 @@ const Activity = (props) => {
 
 const mapStateToProps = (state) => ({
   activities: state.activities.byId,
+  processed: state.activities.processed
 });
 
 const mapDispatchToProps = (dispatch) => ({dispatch});

@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Question from '../../Question';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
-import {getRounds, getRoundQuestions, getQuestionCount} from './actions';
-import {getActivities} from '../actions';
+import {getRoundQuestions} from './actions';
+import {addProcessedQuestion} from '../actions';
 import {Typography} from '@material-ui/core';
 
 function Questions(props) {
@@ -13,14 +13,16 @@ function Questions(props) {
     questionIds,
     activity,
     currentRound,
-    questionCount,
     moveToNextRound,
-    setWaitForNextRound,
+    endOfRound,
     setEndOfRound,
   } = props;
 
   const [currentQuestion, setCurrentQuestion] = useState(null);
 
+  useEffect(() => {
+    dispatch(addProcessedQuestion(currentQuestion));
+  }, [dispatch, currentQuestion]);
 
   useEffect(() => {
     if (activity && currentRound) {
@@ -39,6 +41,8 @@ function Questions(props) {
       const nextId = currentQuestion.order + 1;
       setCurrentQuestion(questions[nextId]);
     } else {
+      console.log('setEndofRound to be true');
+
       setEndOfRound(true);
     }
   };
@@ -51,12 +55,7 @@ function Questions(props) {
     )
   }
 
-
-  console.log('currentRound: ', currentRound);
-  console.log('currentQuestion:', currentQuestion);
-
   return (
-    // <></>
     <Grid container={true}>
       <Grid item={true} xs={12}>
         <Question
@@ -64,7 +63,7 @@ function Questions(props) {
           activity={activity}
           onAnswer={onAnswer}
           round={currentRound}
-          // waitForNextRound={waitForNextRound}
+          endOfRound={endOfRound}
           moveToNextRound={moveToNextRound}
         />
       </Grid>
