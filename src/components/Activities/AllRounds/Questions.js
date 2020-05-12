@@ -13,8 +13,6 @@ function Questions(props) {
     questionIds,
     activity,
     currentRound,
-    moveToNextRound,
-    endOfRound,
     setEndOfRound,
   } = props;
 
@@ -41,8 +39,6 @@ function Questions(props) {
       const nextId = currentQuestion.order + 1;
       setCurrentQuestion(questions[nextId]);
     } else {
-      console.log('setEndofRound to be true');
-
       setEndOfRound(true);
     }
   };
@@ -63,8 +59,6 @@ function Questions(props) {
           activity={activity}
           onAnswer={onAnswer}
           round={currentRound}
-          endOfRound={endOfRound}
-          moveToNextRound={moveToNextRound}
         />
       </Grid>
     </Grid>

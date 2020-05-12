@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 import {indexBy} from 'ramda';
-import {isGetActivitiesSuccess, isAddProcessedQuestion} from './actions';
+import {isGetActivitiesSuccess, isAddProcessedQuestion, isGetActivitiesQuestionsCountSuccess} from './actions';
 
 const initialState = {
   byId: {},
   processed: [],
+  count: null,
 };
 
 export const activities = combineReducers({
   byId,
   processed,
+  count,
 });
 
 const indexById = indexBy((x) => x.id);
@@ -29,5 +31,12 @@ function processed(state = initialState.processed, action) {
     }
   }
 
+  return state;
+}
+
+function count(state = initialState.count, action) {
+  if (isGetActivitiesQuestionsCountSuccess(action)) {
+    return action.payload.data.count;
+  }
   return state;
 }

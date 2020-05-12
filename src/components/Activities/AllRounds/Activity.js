@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {getActivities} from '../actions';
+import {getActivities, getActivityQuestionCount} from '../actions';
 import Rounds from './Rounds';
 import Grid from '@material-ui/core/Grid';
 import {Typography} from '@material-ui/core';
@@ -10,13 +10,18 @@ import BackToHome from '../../Commons/BackToHome';
 const Activity = (props) => {
   const {match, dispatch, activities, processed} = props;
   const [showResult, setShowResult] = useState(false);
-
   const id = match.params.id;
   const activity = activities[id];
 
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (activity) {
+      dispatch(getActivityQuestionCount(activity.id));
+    }
+  }, [dispatch, activity]);
 
   if (showResult) {
     return (
@@ -28,7 +33,10 @@ const Activity = (props) => {
   }
 
   if (activity) {
-    return (<Rounds activity={activity} setShowResult={setShowResult} />)
+    return (<Rounds
+      activity={activity}
+      setShowResult={setShowResult}
+    />)
   } else {
     return (
       <Grid container={true}>

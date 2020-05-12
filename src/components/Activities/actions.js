@@ -16,6 +16,18 @@ export function getActivities() {
   };
 }
 
+export function getActivityQuestionCount(id) {
+  return {
+    payload: {
+      client: 'api',
+      request: {
+        url: `/activities/${id}/questions/count`
+      }
+    },
+    type: GET_ACTIVITIES_QUESTIONS_COUNT
+  };
+}
+
 export function addProcessedQuestion(question) {
   return {
     question,
@@ -34,4 +46,3 @@ export function isGetActivitiesSuccess(action) {
 export function isGetActivitiesQuestionsCountSuccess(action) {
   return action.type === GET_ACTIVITIES_QUESTIONS_COUNT_SUCCESS;
 }
-
