@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Question from '../../Question';
+import Question from '../../Commons/Question';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
 import {getQuestions} from './actions';
