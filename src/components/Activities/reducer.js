@@ -4,7 +4,7 @@ import {isGetActivitiesSuccess, isAddProcessedQuestion, isGetActivitiesQuestions
 
 const initialState = {
   byId: {},
-  processed: [],
+  processed: {},
   count: null,
 };
 
@@ -26,11 +26,10 @@ function byId(state = initialState.byId, action) {
 function processed(state = initialState.processed, action) {
   if (isAddProcessedQuestion(action)) {
     if (action.question) {
-      initialState.processed.push(action.question);
-      return initialState.processed;
+      state[action.question.id] = action.question;
+      return state;
     }
   }
-
   return state;
 }
 

@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
-import {getRounds} from './actions';
 import Questions from './Questions';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -18,7 +16,7 @@ const useStyles = makeStyles(theme =>
 );
 
 const Rounds = (props) => {
-  const {dispatch, activity, rounds, roundIds, setShowResult} = props;
+  const {activity, rounds, roundIds, setShowResult} = props;
   const [currentRound, setCurrentRound] = useState(null);
   const [endOfRound, setEndOfRound] = useState(false);
 
@@ -26,23 +24,17 @@ const Rounds = (props) => {
 
   const moveToNextRound = () => {
     const nextRoundOrder = currentRound.order + 1;
-    if (nextRoundOrder > roundIds.length) {
-      setShowResult(true);
-    } else {
+    if (nextRoundOrder <= roundIds.length) {
       setEndOfRound(false);
       setCurrentRound(rounds[nextRoundOrder]);
+    } else {
+      setShowResult(true);
     }
   };
 
   useEffect(() => {
-    if (activity) {
-      dispatch(getRounds(activity.id));
-    }
-  }, [dispatch, activity]);
-
-  useEffect(() => {
     setCurrentRound(rounds[1]);
-  }, [rounds])
+  }, [activity, rounds])
 
   if (endOfRound) {
     return (
@@ -67,11 +59,4 @@ const Rounds = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  rounds: state.withRounds.roundByOrder,
-  roundIds: state.withRounds.roundOrders,
-});
-
-const mapDispatchToProps = (dispatch) => ({dispatch});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Rounds);
+export default Rounds;

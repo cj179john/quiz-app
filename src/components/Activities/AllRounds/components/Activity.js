@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {getActivities, getActivityQuestionCount} from '../actions';
+import {getActivities} from '../../actions';
 import Rounds from './Rounds';
 import Grid from '@material-ui/core/Grid';
 import {Typography} from '@material-ui/core';
 import Result from './Result';
-import BackToHome from '../../Commons/BackToHome';
+import BackToHome from '../../../Commons/BackToHome';
+import { getRounds } from '../actions';
 
 const Activity = (props) => {
-  const {match, dispatch, activities, processed} = props;
+  const {match, dispatch, activities, processed, rounds, roundIds} = props;
   const [showResult, setShowResult] = useState(false);
   const id = match.params.id;
   const activity = activities[id];
@@ -19,14 +20,14 @@ const Activity = (props) => {
 
   useEffect(() => {
     if (activity) {
-      dispatch(getActivityQuestionCount(activity.id));
+      dispatch(getRounds(activity.id));
     }
   }, [dispatch, activity]);
 
   if (showResult) {
     return (
       <>
-        <Result activity={activity} processed={processed} />
+        <Result activity={activity} processed={processed} rounds={rounds} />
         <BackToHome />
       </>
     );
@@ -36,6 +37,8 @@ const Activity = (props) => {
     return (<Rounds
       activity={activity}
       setShowResult={setShowResult}
+      rounds={rounds}
+      roundIds={roundIds}
     />)
   } else {
     return (
@@ -48,7 +51,9 @@ const Activity = (props) => {
 
 const mapStateToProps = (state) => ({
   activities: state.activities.byId,
-  processed: state.activities.processed
+  processed: state.activities.processed,
+  rounds: state.withRounds.roundByOrder,
+  roundIds: state.withRounds.roundOrders,
 });
 
 const mapDispatchToProps = (dispatch) => ({dispatch});

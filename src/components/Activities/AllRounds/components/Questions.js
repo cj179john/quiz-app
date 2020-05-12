@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import Question from '../../Question';
+import Question from '../../../Question';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
-import {getRoundQuestions} from './actions';
-import {addProcessedQuestion} from '../actions';
+import {getRoundQuestions} from '../actions';
+import {addProcessedQuestion} from '../../actions';
 import {Typography} from '@material-ui/core';
 
 function Questions(props) {
@@ -19,20 +19,18 @@ function Questions(props) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
 
   useEffect(() => {
-    dispatch(addProcessedQuestion(currentQuestion));
-  }, [dispatch, currentQuestion]);
-
-  useEffect(() => {
     if (activity && currentRound) {
       dispatch(getRoundQuestions(activity.id, currentRound.order))
     }
   }, [dispatch, activity, currentRound]);
 
   useEffect(() => {
-    if (questionIds && questionIds.length > 0) {
-        setCurrentQuestion(questions[1]);
-    }
-  }, [questionIds, questions]);
+      setCurrentQuestion(questions[1] || null);
+  }, [questions]);
+
+  useEffect(() => {
+    dispatch(addProcessedQuestion(currentQuestion))
+  }, [dispatch, currentQuestion]);
 
   const onAnswer = () => {
     if (currentQuestion.order < questionIds.length) {

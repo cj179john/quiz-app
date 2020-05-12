@@ -1,7 +1,7 @@
 import React from 'react';
 import {groupBy, map} from 'ramda';
 import { List, ListItem, ListItemText, Divider, makeStyles, Typography } from '@material-ui/core';
-import {SingleQuestion} from '../../Commons/SingleQuestion';
+import {SingleQuestion} from '../../../Commons/SingleQuestion';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,10 +15,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Result(props) {
-  const {activity, processed} = props;
+  const {activity, processed, rounds} = props;
   const classes = useStyles();
-  const roundIds = processed.map(question => question.roundId);
-  const cachedQuestions = groupBy((x) => x.roundId, processed);
+
+  const questionArray = Object.values(processed).map(question => question);
+  const cachedQuestions = groupBy((x) => x.roundId, map((x) => x, questionArray));
 
   return (
     <List component="nav" className={classes.root} aria-label="result-list">
@@ -35,7 +36,7 @@ function Result(props) {
           return (
             <>
               <ListItem className={classes.center} key={roundOrder}>
-                <ListItemText><Typography variant="h6">{roundIds[roundOrder].title}</Typography></ListItemText>
+                <ListItemText><Typography variant="h6">{rounds[roundOrder].title}</Typography></ListItemText>
               </ListItem>
               {
                 (map(question => {

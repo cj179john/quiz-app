@@ -1,6 +1,6 @@
 import AllQuestions from './components/Activities/AllQuestions/AllQuestions';
 import Home from './components/Home';
-import Activity from './components/Activities/AllRounds/Activity';
+import Activity from './components/Activities/AllRounds/components/Activity';
 
 export const routes = [
   {
