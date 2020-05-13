@@ -1,4 +1,4 @@
-import AllQuestions from './components/Activities/AllQuestions/AllQuestions';
+import AllQuestions from './components/Activities/AllQuestions/components/AllQuestions';
 import Home from './components/Home';
 import Activity from './components/Activities/AllRounds/components/Activity';
 

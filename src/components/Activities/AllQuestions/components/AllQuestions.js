@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import Question from '../../Commons/Question';
+import Question from '../../../Commons/Question';
 import Grid from '@material-ui/core/Grid';
 import {connect} from 'react-redux';
-import {getQuestions} from './actions';
-import {getActivities} from '../actions';
+import {getQuestions} from '../actions';
+import {getActivities} from '../../actions';
 import { Typography } from '@material-ui/core';
 import Result from './Result';
-import BackToHome from '../../Commons/BackToHome';
+import BackToHome from '../../../Commons/BackToHome';
 
 function AllQuestions(props) {
   const {match, questions, dispatch, questionIds, activities} = props;
