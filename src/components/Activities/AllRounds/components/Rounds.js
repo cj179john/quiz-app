@@ -21,6 +21,7 @@ const Rounds = (props) => {
   const [endOfRound, setEndOfRound] = useState(false);
 
   const classes = useStyles();
+  const endOfRoundOrder = roundIds[roundIds.length - 1];
 
   const moveToNextRound = () => {
     const nextRoundOrder = currentRound.order + 1;
@@ -44,7 +45,7 @@ const Rounds = (props) => {
         className={classes.questionBox}
       >
       <Grid item={true} className={classes.option} xs={12}>
-        <Button onClick={moveToNextRound}>Next Round</Button>
+        <Button onClick={moveToNextRound}>{endOfRoundOrder === currentRound.order ?  'View Result' : 'Next Round'}</Button>
       </Grid>
     </Grid>
     );
