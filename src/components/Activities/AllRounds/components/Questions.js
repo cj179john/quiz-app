@@ -25,14 +25,12 @@ function Questions(props) {
   }, [dispatch, activity, currentRound]);
 
   useEffect(() => {
-      setCurrentQuestion(questions[1] || null);
+    setCurrentQuestion(questions[1] || null);
   }, [questions]);
 
-  useEffect(() => {
-    dispatch(addProcessedQuestion(currentQuestion))
-  }, [dispatch, currentQuestion]);
-
   const onAnswer = () => {
+    dispatch(addProcessedQuestion(currentQuestion));
+
     if (currentQuestion.order < questionIds.length) {
       const nextId = currentQuestion.order + 1;
       setCurrentQuestion(questions[nextId]);
