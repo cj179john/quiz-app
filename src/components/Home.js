@@ -64,6 +64,7 @@ export function Home(props) {
             variant="contained"
             color="primary"
             component={Link}
+            key={activity.id}
             to={links(activity.id)[activity.id]}
           >
             <ListItemText className={classes.bodyText} primary={activity.name} />

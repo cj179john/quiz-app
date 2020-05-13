@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, ListItem, ListItemText, Divider, makeStyles, Typography } from '@material-ui/core';
-import {SingleQuestion} from '../../Commons/SingleQuestion';
+import {SingleQuestion} from '../../../Commons/SingleQuestion';
 
 const useStyles = makeStyles((theme) => ({
   root: {

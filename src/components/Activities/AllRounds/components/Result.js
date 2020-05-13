@@ -1,10 +1,7 @@
 import React from 'react';
-import CacheService from '../../../services/CacheService';
 import {groupBy, map} from 'ramda';
 import { List, ListItem, ListItemText, Divider, makeStyles, Typography } from '@material-ui/core';
-import {SingleQuestion} from '../../Commons/SingleQuestion';
-
-const cacheService = new CacheService();
+import {SingleQuestion} from '../../../Commons/SingleQuestion';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,9 +15,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Result(props) {
-  const {activity, cacheName, rounds} = props;
+  const {activity, processed, rounds} = props;
   const classes = useStyles();
-  const cachedQuestions = groupBy((x) => x.roundId, cacheService.getItem(cacheName));
+
+  const questionArray = Object.values(processed).map(question => question);
+  const cachedQuestions = groupBy((x) => x.roundId, map((x) => x, questionArray));
 
   return (
     <List component="nav" className={classes.root} aria-label="result-list">

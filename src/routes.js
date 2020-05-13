@@ -1,6 +1,6 @@
-import AllQuestions from './components/Activities/AllQuestions/AllQuestions';
+import AllQuestions from './components/Activities/AllQuestions/components/AllQuestions';
 import Home from './components/Home';
-import AllRounds from './components/Activities/AllRounds/AllRounds';
+import Activity from './components/Activities/AllRounds/components/Activity';
 
 export const routes = [
   {
@@ -12,7 +12,7 @@ export const routes = [
     path: '/activities/:id/questions'
   },
   {
-    component: AllRounds,
+    component: Activity,
     path: '/activities/:id/rounds'
   }
 ];

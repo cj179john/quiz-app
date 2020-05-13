@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const SingleQuestion = (props) => {
   const {question} = props;
-
   const classes = useStyles();
 
   return (
